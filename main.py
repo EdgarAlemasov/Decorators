@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 
 def my_decorator(old_function):
@@ -6,9 +7,10 @@ def my_decorator(old_function):
         start = datetime.now()
         result = old_function(*args, **kwargs)
         function_name = old_function.__name__
+        file_path = os.path.abspath('info_function.log')
         with open('info_function.log', 'a+', encoding='utf-8') as file:
             file.write(f'\nИмя функции: {function_name} \nВремя начала: {start} \nАргументы: {args},{kwargs}'
-                        f'\nРезультат: {result}')
+                        f'\nРезультат: {result} \nПуть: {file_path}')
         return result
     return new_function
 
