@@ -24,3 +24,24 @@ def my_func(*args, **kwargs):
 
 res = my_func(3, 12, 72, info1=90, info2=5)
 print(res)
+
+
+
+nested_list = [
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f'],
+    [1, 2, None]
+]
+
+@my_decorator
+def generator_nested_list(nested_list):
+    for value in nested_list:
+        if isinstance(value, list):
+            for item in value:
+                yield item
+        else:
+            yield value
+
+
+for item in generator_nested_list(nested_list):
+    print(item)
